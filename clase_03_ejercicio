@@ -48,7 +48,7 @@ if (opcion == 1):
     print("\t      a = ",a)
     graficar(0,b+1,1)
     print("\t      b = ",b)
-    graficar(0,opcion_suma(a,b),1)
+    graficar(0,opcion_suma(a,b)+1,1)
     print("\t  suma = ",opcion_suma(a, b))
     
     
