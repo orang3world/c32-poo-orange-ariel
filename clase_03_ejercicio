@@ -1,0 +1,34 @@
+"""
+Consigna: ✍️
+Crear un pequeño programa que realice una función aritmética que permita al usuario ingresar datos por la terminal acorde a distintas opciones.  Para ellos debemos definir una función que reciba parámetros:
+Combinar funciones nativas y funciones definidas,
+condicionales, y bucles.
+Si el usuario ingresa el nro 1, realiza la acción A.
+Si el usuario ingresa el nro 2, realiza la acción B.
+"""
+
+a = int(input("ingrese el valor a: "))
+b = int(input("ingrese el valor b: "))
+
+# nro 1 : calcular suma
+# nro 2 : calcular resta
+
+opcion = int(input(
+    "elija la opcion deseada:\n nro 1 : calcular suma\n nro 2 : calcular resta\n"
+))
+
+
+def opcion_suma(a, b):
+    suma = a + b
+    return suma
+
+
+def opcion_resta(a, b):
+    resta = a - b
+    return resta
+
+
+if (opcion == 1):
+    print("La suma es igual a: ",opcion_suma(a, b))
+elif (opcion == 2):
+    print("La resta es igual a: ",opcion_resta(a, b))
