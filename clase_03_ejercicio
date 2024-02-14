@@ -27,7 +27,7 @@ def opcion_resta(a, b):
     resta = a - b
     return resta
 
-
+# Condicionales
 if (opcion == 1):
     print("La suma es igual a: ",opcion_suma(a, b))
 elif (opcion == 2):
