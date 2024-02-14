@@ -65,7 +65,7 @@ elif (opcion == 2):
     elif (a>b):
         graficar(0,opcion_resta(a,b),1)
     else:
-        graficar(0,0,1)
+        graficar(0,1,1)
     print("\t resta = ",opcion_resta(a, b))
     print()
     
