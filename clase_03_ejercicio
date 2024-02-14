@@ -21,7 +21,7 @@ opcion = int(input(
     "elija la opcion deseada:\
         \n nro 1 : calcular suma\
         \n nro 2 : calcular resta\
-        \n"
+        \n opcion elegida: "
 ))
 
 # Funciones del usuario
@@ -36,9 +36,9 @@ def opcion_resta(a, b):
 
 # bucles
 def graficar(inicio,fin,paso):
-       
+    print()
     for num in range(inicio,fin,paso):
-        print(str(num),end="__")
+        print("__"+str(num),end="")
     
     
 
