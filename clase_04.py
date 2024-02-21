@@ -30,8 +30,8 @@ class Auto:
         return self.estado
         
     def mostrarAuto(self):
-        print("Marca: {}",\
-            "Modelo: {}",\
+        print("Marca: {}",
+            "Modelo: {}",
             "Color: {self.getColor()}",\
             "Combustible: {self.getTipoCombustible()}",\
             "Puertas: {self.getCantPuertas()}",format(self.getMarca(),self.getModelo()))
