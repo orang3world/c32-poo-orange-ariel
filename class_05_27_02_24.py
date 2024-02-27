@@ -1,6 +1,8 @@
+from ast import arg
 from http import client
 import os
-os.system('clear'|'cls')
+
+from click import argument
 
 """
 Los objetos son instancias de las clases
@@ -12,8 +14,6 @@ codigo (solos)
 import datetime
 from datetime import datetime
  
-month = datetime.now().month
-
 
 from enum import Enum
 
@@ -81,9 +81,12 @@ class SalarioFijo(Empleado):
     
     
 
-empl01 = Empleado('12345678',Ariel, Sanchez,1985, PorComision)
-empl02 = Empleado('87654321',Juan, Fernandez,2005, PorComision)
-empl03 = Empleado('22233344',Cecilia, Garcia,2022, PorComision)
-empl04 = Empleado('33344455',Alicia, Mendoza,2009, SalarioFijo)
-empl05 = Empleado('44455566',Fennando , Olavarria,2020, SalarioFijo)
-empl06 = Empleado('66677788',German, Larrea,2000, SalarioFijo)
+empl01 = Empleado('12345678','Ariel', 'Sanchez',1985, 'PorComision')
+empl02 = Empleado('87654321','Juan', 'Fernandez',2005, 'PorComision')
+empl03 = Empleado('22233344','Cecilia', 'Garcia',2022, 'PorComision')
+empl04 = Empleado('33344455','Alicia', 'Mendoza',2009, 'SalarioFijo')
+empl05 = Empleado('44455566','Fennando' , 'Olavarria',2020, 'SalarioFijo')
+empl06 = Empleado('66677788','German', 'Larrea',2000, 'SalarioFijo')
+
+for empleado in Empleado(*):
+    print(empleado.dni)
