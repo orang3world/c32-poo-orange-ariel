@@ -6,6 +6,9 @@ diagrama uml (juntos)
 codigo (solos)
 
 """
+import os
+os.system('clear' or 'cls')
+
 import datetime
 from datetime import datetime
  
@@ -67,6 +70,7 @@ class Empleado:
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
                    str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso))+' '*(15-len(str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)))))
+        print()
        
             # print(f'\t Persona : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)} ')
        
