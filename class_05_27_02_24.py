@@ -100,7 +100,10 @@ class PorComision(Empleado):
         
         Empleado.emplPorComision = sorted(Empleado.emplPorComision, key=lambda employee:employee.clientesCaptados, reverse=True)
         empl = Empleado.emplPorComision[0]
-        print(f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. Con {empl.clientesCaptados} clientes captados.')
+        texto = f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. cantidad: {empl.clientesCaptados} clientes.'
+        print('\n'+'-'*len(texto))
+        print(f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. cantidad: {empl.clientesCaptados} clientes.')
+        print('-'*len(texto))
          
         
         
