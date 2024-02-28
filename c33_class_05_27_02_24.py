@@ -55,6 +55,7 @@ class Empleado:
         print('----------------------------------')
         print('Listado de empleados por comision:')
         print('----------------------------------')
+        
         # ancho de columan para la presentacion en terminal
         anchoColumna = 15
         # iteracion por las instancias PorComision
@@ -66,10 +67,12 @@ class Empleado:
             print(empl.nombre+' '*(anchoColumna-len(empl.nombre)), 
                    empl.apellido+' '*(anchoColumna-len(empl.apellido)),
                    ' '*(espacios)+str(salarioPorComision))
+            
         # titulo
         print('--------------------------------------')
         print('Listado de empleados con salario fijo:')
         print('--------------------------------------')
+        
         # ordenar las instancias por salario
         Empleado.emplSalarioFijo = sorted(Empleado.emplSalarioFijo, key=lambda empl:empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso), reverse=True)
         # iteracion por las instancias SalarioFijo
@@ -122,23 +125,23 @@ class PorComision(Empleado):
         
 class SalarioFijo(Empleado):
     
+    porcAdicional = {'CAT1':1,'CAT2':1.05,'CAT3':1.1}
     
-    def __init__(self, dni, nombre, apellido, añoIngreso, relContractual, sueldoBasico, porcAdicional) -> None:
+    def __init__(self, dni, nombre, apellido, añoIngreso, relContractual, sueldoBasico) -> None:
         self.sueldoBasico = sueldoBasico
-        self.porcAdicional = porcAdicional
         super().__init__(dni, nombre, apellido, añoIngreso, relContractual)
         
         
-    def calcularSalario(self, sueldoBasico, añoIngreso, ):
+    def calcularSalario(self, sueldoBasico, añoIngreso):
         year = datetime.now().year   
         antiguedad = year - añoIngreso     
         
         if antiguedad < 2:
-            salario = sueldoBasico
+            salario = sueldoBasico * SalarioFijo.porcAdicional['CAT1']
         elif antiguedad < 5:
-            salario = sueldoBasico * 1.05
+            salario = sueldoBasico * SalarioFijo.porcAdicional['CAT2']
         else:
-            salario = sueldoBasico * 1.1
+            salario = sueldoBasico * SalarioFijo.porcAdicional['CAT3']
             
         return float(salario)
             
@@ -150,11 +153,11 @@ empl02 = PorComision('11223344','Alejandro', 'Gomez',1995, 'porComision',1000000
 empl03 = PorComision('11122233','Brian', 'Figueroa',2005, 'porComision',1000000, 200, 15000)
 empl04 = PorComision('11112222','Carlos', 'Colombo',2015, 'porComision',1000000, 100, 15000)
 empl05 = PorComision('33334444','Cecilia', 'Garcia',2022, 'porComision',1000000, 50, 15000)
-empl06 = SalarioFijo('55556666','Alicia', 'Mendoza',2009, 'salarioFijo',2000000, 23)
-empl07 = SalarioFijo('77778888','Maria' , 'Lorenzo',2010, 'salarioFijo',2000000, 23)
-empl08 = SalarioFijo('99990000','Laura', 'Salguero',2023, 'salarioFijo',3000000, 23)
-empl09 = SalarioFijo('22222222','Macarena', 'Silverado',2021, 'salarioFijo',3000000, 23)
-empl10 = SalarioFijo('33333333','German', 'Larrea',2018, 'salarioFijo',4000000, 23)
+empl06 = SalarioFijo('55556666','Alicia', 'Mendoza',2009, 'salarioFijo',2000000)
+empl07 = SalarioFijo('77778888','Maria' , 'Lorenzo',2010, 'salarioFijo',2000000)
+empl08 = SalarioFijo('99990000','Laura', 'Salguero',2023, 'salarioFijo',3000000)
+empl09 = SalarioFijo('22222222','Macarena', 'Silverado',2021, 'salarioFijo',3000000)
+empl10 = SalarioFijo('33333333','German', 'Larrea',2018, 'salarioFijo',4000000)
 
 
 PorComision.empleadoConMasClientes()
