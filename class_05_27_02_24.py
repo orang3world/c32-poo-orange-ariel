@@ -57,6 +57,7 @@ class Empleado:
         print('----------------------------------')
         print('Listado de empleados por comision:')
         print('----------------------------------')
+
         for empl in Empleado.emplPorComision:
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
@@ -64,6 +65,7 @@ class Empleado:
         print('--------------------------------------')
         print('Listado de empleados con salario fijo:')
         print('--------------------------------------')
+        Empleado.emplSalarioFijo = sorted(Empleado.emplSalarioFijo, key=lambda empl:empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso), reverse=True)
         for empl in Empleado.emplSalarioFijo:
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
@@ -104,7 +106,7 @@ class PorComision(Empleado):
         empl = Empleado.emplPorComision[0]
         texto = f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. cantidad: {empl.clientesCaptados} clientes.'
         print('\n'+'-'*len(texto))
-        print(f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. cantidad: {empl.clientesCaptados} clientes.')
+        print(texto)
         print('-'*len(texto))
          
         
@@ -134,8 +136,8 @@ class SalarioFijo(Empleado):
     
     
 
-empl01 = PorComision('12345678','Ariel', 'Sanchez',1985, 'porComision',1000000, 500, 15000)
-empl02 = PorComision('11223344','Alejandro', 'Gomez',1995, 'porComision',1000000, 1300, 15000)
+empl01 = PorComision('12345678','Ariel', 'Sanchez',1985, 'porComision',1000000, 50, 15000)
+empl02 = PorComision('11223344','Alejandro', 'Gomez',1995, 'porComision',1000000, 100, 15000)
 empl03 = PorComision('11122233','Brian', 'Figueroa',2005, 'porComision',1000000, 200, 15000)
 empl04 = PorComision('11112222','Carlos', 'Colombo',2015, 'porComision',1000000, 100, 15000)
 empl05 = PorComision('33334444','Cecilia', 'Garcia',2022, 'porComision',1000000, 50, 15000)
