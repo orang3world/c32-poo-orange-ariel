@@ -13,8 +13,15 @@ from enum import Enum
 import os
 
 os.system('clear' or 'cls')
-
-
+# funcion para presentar datos en columnas
+def datosMasEspacios(anchoColumna=15,alineacion='izquierda',dato=''):
+    espacios = ' '*(anchoColumna-len(str(dato)))
+    if alineacion == 'izquierda':
+        return str(dato)+espacios
+    elif alineacion == 'derecha':
+        return espacios+str(dato)
+    else:
+        return espacios[:int(len(espacios)/2)]+str(dato)+espacios[int(len(espacios)/2):]
 
 class TipoContrato(Enum):
     FIJO = "Salario Fijo"
@@ -52,38 +59,49 @@ class Empleado:
     def mostrarSalario():
         
         # titulo
-        print('----------------------------------')
+        print('\n----------------------------------')
         print('Listado de empleados por comision:')
-        print('----------------------------------')
+        print('----------------------------------\n')
         
         # ancho de columan para la presentacion en terminal
         anchoColumna = 15
+        alineacion = 'izquierda'
+        titulos = ['Nombre','Apellido','Salario']
+        print(datosMasEspacios(anchoColumna,alineacion,titulos[0]),
+              datosMasEspacios(anchoColumna,alineacion,titulos[1]),
+              datosMasEspacios(anchoColumna,'derecha',titulos[2]),
+              end=' ')
+        print('\n')
+       
         # iteracion por las instancias PorComision
         for empl in Empleado.emplPorComision:
-            # Calcular el salario de cada instancia
             salarioPorComision = empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)
-            # llenar con espacios cada str para un ancho de columna comun
-            espacios = anchoColumna-len(str(salarioPorComision))
-            print(empl.nombre+' '*(anchoColumna-len(empl.nombre)), 
-                   empl.apellido+' '*(anchoColumna-len(empl.apellido)),
-                   ' '*(espacios)+str(salarioPorComision))
-            
+            print(datosMasEspacios(anchoColumna,alineacion,empl.nombre),
+                  datosMasEspacios(anchoColumna,alineacion,empl.apellido),
+                  datosMasEspacios(anchoColumna,'derecha',salarioPorComision))
         # titulo
-        print('--------------------------------------')
+        print('\n--------------------------------------')
         print('Listado de empleados con salario fijo:')
-        print('--------------------------------------')
+        print('--------------------------------------\n')
         
         # ordenar las instancias por salario
         Empleado.emplSalarioFijo = sorted(Empleado.emplSalarioFijo, key=lambda empl:empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso), reverse=True)
         # iteracion por las instancias SalarioFijo
+        titulos = ['Nombre','Apellido','Salario']
+        print(datosMasEspacios(anchoColumna,alineacion,titulos[0]),
+              datosMasEspacios(anchoColumna,alineacion,titulos[1]),
+              datosMasEspacios(anchoColumna,'derecha',titulos[2]),
+              end=' ') 
+        print('\n')
+       
         for empl in Empleado.emplSalarioFijo:
             # Calcular el salario de cada instancia
             salarioFijoValor = empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)
             # llenar con espacios casa str para un ancho de columna comun
-            espacios = anchoColumna-len(str(salarioPorComision))
-            print(empl.nombre+' '*(15-len(empl.nombre)), 
-                   empl.apellido+' '*(15-len(empl.apellido)),
-                   ' '*(espacios)+str(salarioFijoValor))
+            print(datosMasEspacios(anchoColumna,alineacion,empl.nombre),
+                  datosMasEspacios(anchoColumna,alineacion,empl.apellido),
+                  datosMasEspacios(anchoColumna,'derecha',salarioFijoValor))
+  
         print()    
                 
 
@@ -132,8 +150,17 @@ class PorComision(Empleado):
         print(texto)
         print('-'*len(texto))
         print()
+        
+        anchoColumna = 15
+        alineacion = 'izquierda'
+        titulos = ['Lugar','Nombre','Apellido','Cts. Captados']
+        [print(datosMasEspacios(anchoColumna,alineacion,titulos[ind]),end=' ') for ind in range(0,len(titulos))]
+        print('\n')
         for e in empl:
-            print(f'{empl.index(e)+1}° lugar: ',e.nombre,e.apellido,e.clientesCaptados)
+            print(datosMasEspacios(anchoColumna,alineacion,f'{empl.index(e)+1}° : '),
+                  datosMasEspacios(anchoColumna,alineacion,e.nombre),
+                  datosMasEspacios(anchoColumna,alineacion,e.apellido),
+                  datosMasEspacios(anchoColumna,alineacion,e.clientesCaptados))
          
         
         
