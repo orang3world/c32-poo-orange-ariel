@@ -6,15 +6,13 @@ diagrama uml (juntos)
 codigo (solos)
 
 """
-import os
-os.system('clear' or 'cls')
 
 import datetime
 from datetime import datetime
- 
-
 from enum import Enum
-from pyclbr import _Object
+import os
+os.system('clear' or 'cls')
+
 
 
 class TipoContrato(Enum):
