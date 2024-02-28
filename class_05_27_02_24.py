@@ -11,6 +11,7 @@ from datetime import datetime
  
 
 from enum import Enum
+from pyclbr import _Object
 
 
 class TipoContrato(Enum):
@@ -29,12 +30,14 @@ class Empleado:
     emplPorComision = []
     emplSalarioFijo = []
 
+
     def __init__(self, dni, nombre, apellido, añoIngreso, relContractual) -> None:
         self.dni = dni
         self.nombre = nombre
         self.apellido = apellido
         self.añoIngreso = añoIngreso
         self.relContractual = relContractual
+        
         if relContractual == 'porComision':
             self.__class__.emplPorComision.append(self)
         elif relContractual == 'salarioFijo':
@@ -42,19 +45,32 @@ class Empleado:
         else:
             self.__class__.empleados.append(self)
 
-
-
-        self.__class__.empleados.append(self)
         
     def calcularSalario(self):
         pass
+    
+    
     def mostrarSalario():
+        
+        
+        print('----------------------------------')
         print('Listado de empleados por comision:')
+        print('----------------------------------')
         for empl in Empleado.emplPorComision:
-             print(f'\tNombre : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)} ')
-        print('Listado de empleados con salario fijo :')
+            print(empl.nombre+' '*(15-len(empl.nombre)), 
+                   empl.apellido+' '*(15-len(empl.apellido)),
+                   str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente))+' '*(15-len(str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)))))
+        print('--------------------------------------')
+        print('Listado de empleados con salario fijo:')
+        print('--------------------------------------')
         for empl in Empleado.emplSalarioFijo:
-             print(f'\t Persona : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)} ')
+            print(empl.nombre+' '*(15-len(empl.nombre)), 
+                   empl.apellido+' '*(15-len(empl.apellido)),
+                   str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso))+' '*(15-len(str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)))))
+       
+            # print(f'\t Persona : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)} ')
+       
+                
 
 
     
@@ -67,13 +83,16 @@ class PorComision(Empleado):
         self.montoPorCliente = montoPorCliente
         super().__init__(dni, nombre, apellido, añoIngreso, relContractual)
         
+        
     def calcularSalario(self, salarioMinimo, clientesCaptados, montoPorCliente):
         comision = clientesCaptados * montoPorCliente
+        
         if comision > salarioMinimo:
             salario = comision
             return salario
         else:
             salario = salarioMinimo
+            
         return salario
     
     
@@ -86,11 +105,13 @@ class PorComision(Empleado):
         
         
 class SalarioFijo(Empleado):
+    
+    
     def __init__(self, dni, nombre, apellido, añoIngreso, relContractual, sueldoBasico, porcAdicional) -> None:
         self.sueldoBasico = sueldoBasico
         self.porcAdicional = porcAdicional
-        
         super().__init__(dni, nombre, apellido, añoIngreso, relContractual)
+        
         
     def calcularSalario(self, sueldoBasico, añoIngreso, ):
         year = datetime.now().year   
@@ -102,6 +123,7 @@ class SalarioFijo(Empleado):
             salario = sueldoBasico * 1.05
         else:
             salario = sueldoBasico * 1.1
+            
         return salario
             
     
