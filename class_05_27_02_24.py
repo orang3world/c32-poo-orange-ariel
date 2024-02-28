@@ -11,6 +11,8 @@ import datetime
 from datetime import datetime
 from enum import Enum
 import os
+
+from traitlets import Float
 os.system('clear' or 'cls')
 
 
@@ -61,7 +63,7 @@ class Empleado:
         for empl in Empleado.emplPorComision:
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
-                   str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente))+' '*(15-len(str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)))))
+                   ' '*(15-len(str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente))))+str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)))
         print('--------------------------------------')
         print('Listado de empleados con salario fijo:')
         print('--------------------------------------')
@@ -69,7 +71,7 @@ class Empleado:
         for empl in Empleado.emplSalarioFijo:
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
-                   str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso))+' '*(15-len(str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)))))
+                   ' '*(15-len(str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso))))+str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)))
         print()
        
             # print(f'\t Persona : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)} ')
@@ -93,11 +95,11 @@ class PorComision(Empleado):
         
         if comision > salarioMinimo:
             salario = comision
-            return salario
+            return float(salario)
         else:
             salario = salarioMinimo
             
-        return salario
+        return float(salario)
     
     
     def empleadoConMasClientes():
@@ -131,7 +133,7 @@ class SalarioFijo(Empleado):
         else:
             salario = sueldoBasico * 1.1
             
-        return salario
+        return float(salario)
             
     
     
