@@ -120,6 +120,20 @@ class PorComision(Empleado):
         print('\n'+'-'*len(texto))
         print(texto)
         print('-'*len(texto))
+        
+        
+    def rankingMasClientes():
+        # ordenar las instancias 'PorComision' por clientesCaptados, orden descendente.
+        Empleado.emplPorComision = sorted(Empleado.emplPorComision, key=lambda employee:employee.clientesCaptados, reverse=True)
+        # tomar el primero de la lista (el mayor valor)
+        empl = Empleado.emplPorComision[0:3]
+        texto = 'El ranking de los empleados con mas clientes captados es : '
+        print('\n'+'-'*len(texto))
+        print(texto)
+        print('-'*len(texto))
+        print()
+        for e in empl:
+            print(f'{empl.index(e)+1}° lugar: ',e.nombre,e.apellido,e.clientesCaptados)
          
         
         
@@ -151,8 +165,8 @@ class SalarioFijo(Empleado):
 empl01 = PorComision('12345678','Ariel', 'Sanchez',1985, 'porComision',1000000, 50, 15000)
 empl02 = PorComision('11223344','Alejandro', 'Gomez',1995, 'porComision',1000000, 100, 15000)
 empl03 = PorComision('11122233','Brian', 'Figueroa',2005, 'porComision',1000000, 200, 15000)
-empl04 = PorComision('11112222','Carlos', 'Colombo',2015, 'porComision',1000000, 100, 15000)
-empl05 = PorComision('33334444','Cecilia', 'Garcia',2022, 'porComision',1000000, 50, 15000)
+empl04 = PorComision('11112222','Carlos', 'Colombo',2015, 'porComision',1000000, 300, 15000)
+empl05 = PorComision('33334444','Cecilia', 'Garcia',2022, 'porComision',1000000, 500, 15000)
 empl06 = SalarioFijo('55556666','Alicia', 'Mendoza',2009, 'salarioFijo',2000000)
 empl07 = SalarioFijo('77778888','Maria' , 'Lorenzo',2010, 'salarioFijo',2000000)
 empl08 = SalarioFijo('99990000','Laura', 'Salguero',2023, 'salarioFijo',3000000)
@@ -161,5 +175,6 @@ empl10 = SalarioFijo('33333333','German', 'Larrea',2018, 'salarioFijo',4000000)
 
 
 PorComision.empleadoConMasClientes()
+PorComision.rankingMasClientes()
 print()
 Empleado.mostrarSalario()
