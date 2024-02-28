@@ -59,25 +59,30 @@ class Empleado:
         print('----------------------------------')
         print('Listado de empleados por comision:')
         print('----------------------------------')
+        
+        anchoColumna = 15
 
         for empl in Empleado.emplPorComision:
-            print(empl.nombre+' '*(15-len(empl.nombre)), 
-                   empl.apellido+' '*(15-len(empl.apellido)),
-                   ' '*(15-len(str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente))))+str(empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)))
+            salarioPorComision = empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)
+            espacios = anchoColumna-len(str(salarioPorComision))
+            print(empl.nombre+' '*(anchoColumna-len(empl.nombre)), 
+                   empl.apellido+' '*(anchoColumna-len(empl.apellido)),
+                   ' '*(espacios)+str(salarioPorComision))
+            
         print('--------------------------------------')
         print('Listado de empleados con salario fijo:')
         print('--------------------------------------')
+        
         Empleado.emplSalarioFijo = sorted(Empleado.emplSalarioFijo, key=lambda empl:empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso), reverse=True)
+        
         for empl in Empleado.emplSalarioFijo:
+            salarioFijoValor = empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)
+            espacios = anchoColumna-len(str(salarioPorComision))
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
-                   ' '*(15-len(str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso))))+str(empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)))
-        print()
-       
-            # print(f'\t Persona : {empl.nombre} {empl.apellido}. Salario:  {empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)} ')
-       
+                   ' '*(espacios)+str(salarioFijoValor))
+        print()    
                 
-
 
     
 class PorComision(Empleado):
