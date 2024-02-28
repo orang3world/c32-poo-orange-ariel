@@ -27,8 +27,7 @@ class Antiguedad(Enum):
 
 
 class Empleado:
-    
-    empleados = []
+    # instancias ordenadas en listas
     emplPorComision = []
     emplSalarioFijo = []
 
@@ -42,10 +41,8 @@ class Empleado:
         
         if relContractual == 'porComision':
             self.__class__.emplPorComision.append(self)
-        elif relContractual == 'salarioFijo':
-            self.__class__.emplSalarioFijo.append(self)
         else:
-            self.__class__.empleados.append(self)
+            self.__class__.emplSalarioFijo.append(self)
 
         
     def calcularSalario(self):
@@ -54,28 +51,32 @@ class Empleado:
     
     def mostrarSalario():
         
-        
+        # titulo
         print('----------------------------------')
         print('Listado de empleados por comision:')
         print('----------------------------------')
-        
+        # ancho de columan para la presentacion en terminal
         anchoColumna = 15
-
+        # iteracion por las instancias PorComision
         for empl in Empleado.emplPorComision:
+            # Calcular el salario de cada instancia
             salarioPorComision = empl.calcularSalario(empl.salarioMinimo,empl.clientesCaptados,empl.montoPorCliente)
+            # llenar con espacios cada str para un ancho de columna comun
             espacios = anchoColumna-len(str(salarioPorComision))
             print(empl.nombre+' '*(anchoColumna-len(empl.nombre)), 
                    empl.apellido+' '*(anchoColumna-len(empl.apellido)),
                    ' '*(espacios)+str(salarioPorComision))
-            
+        # titulo
         print('--------------------------------------')
         print('Listado de empleados con salario fijo:')
         print('--------------------------------------')
-        
+        # ordenar las instancias por salario
         Empleado.emplSalarioFijo = sorted(Empleado.emplSalarioFijo, key=lambda empl:empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso), reverse=True)
-        
+        # iteracion por las instancias SalarioFijo
         for empl in Empleado.emplSalarioFijo:
+            # Calcular el salario de cada instancia
             salarioFijoValor = empl.calcularSalario(empl.sueldoBasico,empl.añoIngreso)
+            # llenar con espacios casa str para un ancho de columna comun
             espacios = anchoColumna-len(str(salarioPorComision))
             print(empl.nombre+' '*(15-len(empl.nombre)), 
                    empl.apellido+' '*(15-len(empl.apellido)),
@@ -95,8 +96,9 @@ class PorComision(Empleado):
         
         
     def calcularSalario(self, salarioMinimo, clientesCaptados, montoPorCliente):
-        comision = clientesCaptados * montoPorCliente
         
+        comision = clientesCaptados * montoPorCliente
+        # si la comision es menor al salario minimo, recibe el salario minimo, sino la comision.
         if comision > salarioMinimo:
             salario = comision
             return float(salario)
@@ -107,8 +109,9 @@ class PorComision(Empleado):
     
     
     def empleadoConMasClientes():
-        
+        # ordenar las instancias 'PorComision' por clientesCaptados, orden descendente.
         Empleado.emplPorComision = sorted(Empleado.emplPorComision, key=lambda employee:employee.clientesCaptados, reverse=True)
+        # tomar el primero de la lista (el mayor valor)
         empl = Empleado.emplPorComision[0]
         texto = f'El empleado con mas clientes captados es : {empl.nombre} {empl.apellido}. cantidad: {empl.clientesCaptados} clientes.'
         print('\n'+'-'*len(texto))
