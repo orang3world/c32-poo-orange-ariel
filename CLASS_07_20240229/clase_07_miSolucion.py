@@ -92,9 +92,6 @@ class Fabrica:
                     return
                     
         print('El id proporcionado no fue encontrado, intente nuevamente')
-        # pedir confirmacion
-        # borrar y ver lista nueva
-    idNum = list(range(1,1000))
 
 
     def porcInstrumentosPorTipo(self, sucursal):
@@ -146,7 +143,7 @@ for s in Fabrica.listaDeSuc:
     for i in Sucursal(s).listaDeInstrum:
         print(i.id,i.precio,i.tipoDeInstrum)
 '''
-# EJECUCINES
+# EJECUCIONES
 
 Fabrica('Ariel').listar_instrumentos()
 Fabrica('Ariel').listarInstrumentosPorTipo('Cuerda')
