@@ -1,0 +1,31 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notesru</help_text><element><id>UMLClass</id><coordinates><x>70</x><y>0</y><w>210</w><h>150</h></coordinates><panel_attributes>Fabrica
+--
+listaDeSuc = []
+--
++ crear_Sucursal()
++ listar_Instrumentos()
++ listar_Instrumentos(TipoDeInstrum)
++ borrar_instrumentos()
++ porcInstrumentosPorTipo(sucursal)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>10</y><w>210</w><h>110</h></coordinates><panel_attributes>Sucursal
+--
+nombreDeSuc
+listaDeInstrum = []
+--
++ crear_Instrumento()
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>220</y><w>210</w><h>120</h></coordinates><panel_attributes>Instrumento
+--
+
+id
+precio
+tipoDeInstrum
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>210</y><w>160</w><h>90</h></coordinates><panel_attributes>&lt;Enum&gt;
+TipoDeInstrum
+--
+- PSN = "Percusion"
+- VTO = "Viento"
+- CDA = "Cuerda"</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>240</y><w>270</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>70</y><w>320</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n</panel_attributes><additional_attributes>300;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>110</y><w>230</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
+m2=1..n</panel_attributes><additional_attributes>10;110;210;10</additional_attributes></element></diagram>
