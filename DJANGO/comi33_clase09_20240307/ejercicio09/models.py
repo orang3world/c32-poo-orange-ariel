@@ -3,10 +3,10 @@ from django.db import models
 
 # Create your models here.
 class Usuario(models.Model):
-    userName = models.CharField(max_lenght=100)
-    password = models.CharField(max_lenght=10)
+    userName = models.CharField(max_length=100)
+    password = models.CharField(max_length=10)
 
     class Meta:
-        ordening = ['-userName']
+        ordering = ['-userName']
     def __str__(self):
         return self.userName
